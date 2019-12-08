@@ -166,7 +166,8 @@
     // Definisi untuk matriks model
     var mmLoc = gl.getUniformLocation(program, 'modelMatrix');
     var mm = glMatrix.mat4.create();
-    glMatrix.mat4.translate(mm, mm, [0.0, 0.0, -1.2]);
+    mm = glMatrix.mat4.create();
+    glMatrix.mat4.translate(mm, mm, [0.0, 0.0, -1.5]);
 
     // Definisi untuk matrix view dan projection
     var vmLoc = gl.getUniformLocation(program, 'viewMatrix');
@@ -287,8 +288,6 @@
 
 			theta += 0.0063;
 
-			mm = glMatrix.mat4.create();
-			glMatrix.mat4.translate(mm, mm, [0.0, 0.0, -1.5]);
 			gl.uniformMatrix4fv(mmLoc, false, mm);
       { // Menggambar kubus 
         // Membuat vertex buffer object (CPU Memory <==> GPU Memory)
@@ -350,12 +349,12 @@
 				flag.z = !flag.z;
 			}
 			// Draw the filled version
-			mm = glMatrix.mat4.create();
-			glMatrix.mat4.translate(mm, mm, [0.0, 0.0, -1.5]);
-			glMatrix.mat4.translate(mm, mm, [trans.x, trans.y, trans.z]);
-			glMatrix.mat4.scale(mm, mm, [0.3, 0.3, 0.3]);
-			glMatrix.mat4.rotateY(mm,mm, theta)
-			gl.uniformMatrix4fv(mmLoc, false, mm);
+			var hurufmm = glMatrix.mat4.create();
+			glMatrix.mat4.translate(hurufmm, hurufmm, [0.0, 0.0, -1.5]);
+			glMatrix.mat4.translate(hurufmm, hurufmm, [trans.x, trans.y, trans.z]);
+			glMatrix.mat4.scale(hurufmm, hurufmm, [0.3, 0.3, 0.3]);
+			glMatrix.mat4.rotateY(hurufmm,hurufmm, theta)
+			gl.uniformMatrix4fv(mmLoc, false, hurufmm);
       drawA(gl.TRIANGLES, Outline)
 
       requestAnimationFrame(render);
