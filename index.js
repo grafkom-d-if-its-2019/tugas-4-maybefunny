@@ -54,23 +54,23 @@
           vertices.push(cubeColors[a][j]);
         }
         for (var j=0; j < 3; j++) {
-          vertices.push(cubeNormals[a][j]);
+          vertices.push(-1 * cubeNormals[a][j]);
         }
         switch (indices[i]) {
           case a:
-            vertices.push(0.0);
+            vertices.push((a - 2) * 0.125);
             vertices.push(0.0);
             break;
           case b:
-            vertices.push(0.0);
+            vertices.push((a - 2) * 0.125);
             vertices.push(1.0);
             break;
           case c:
-            vertices.push(1.0);
+            vertices.push((a - 1) * 0.125);
             vertices.push(1.0);
             break;
           case d:
-            vertices.push(1.0);
+            vertices.push((a - 1) * 0.125);
             vertices.push(0.0);
             break;
         
@@ -79,7 +79,7 @@
         }
       }
     }
-    quad(1, 0, 3, 2);
+    // quad(1, 0, 3, 2);
     quad(2, 3, 7, 6);
     quad(3, 0, 4, 7);
     quad(4, 5, 6, 7);
@@ -237,7 +237,7 @@
       );
       gl.uniformMatrix4fv(vmLoc, false, vm);
 
-      gl.drawArrays(gl.TRIANGLES, 0, 36);
+      gl.drawArrays(gl.TRIANGLES, 0, 30);
       requestAnimationFrame(render);
     }
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -257,7 +257,7 @@
     
     // Asynchronously load an image
     var image = new Image();
-    image.src = "images/txStainglass.bmp";
+    image.src = "images/tex.jpg";
     image.addEventListener('load', function() {
       // Now that the image has loaded make copy it to the texture.
       gl.bindTexture(gl.TEXTURE_2D, texture);
